@@ -1,32 +1,26 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Base from "../pages/Base";
 import CreateUser from "../pages/CreateUser";
+import Profile from '../pages/Profile';
 import SignIn from "../pages/SignIn";
 // const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>
 
 const AppRoutes = () => {
   const routes = createBrowserRouter([
-    // {
-    //   path: "/",
-    //   element: secureRouteWrapper(<Base />),
-    //   children: [
-    //     {
-    //       path: "home",
-    //       element: secureRouteWrapper(<Home />),
-    //     },
-    //     {
-    //       path: "about",
-    //       element: secureRouteWrapper(<About />),
-    //     },
-    //     {
-    //       path: "employees",
-    //       element: secureRouteWrapper(<Employee />),
-    //     },
-    //     {
-    //       path: "profile",
-    //       element: secureRouteWrapper(<Profile />),
-    //     },
-    //   ],
-    // },
+    {
+      path: "/",
+      element: <Base />, // secureRouteWrapper(<Base />),
+      children: [
+        // {
+        //   path: "files",
+        //   element: secureRouteWrapper(<Files />),
+        // },
+        {
+          path: "profile-list",
+          element: <Profile />, // secureRouteWrapper(<Profile />),
+        },
+      ],
+    },
     {
       path: "/signin",
       element: <SignIn />,
