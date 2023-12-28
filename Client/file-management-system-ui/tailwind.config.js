@@ -13,8 +13,9 @@ export default {
         'onboarding': '100%',
       },
       colors: {
-        'forgetPassword': '#4C22C5'
-      }
+        'forgetPassword': '#4C22C5',
+        'navbar': '#1C2434',
+      },
     },
   },
   plugins: [],

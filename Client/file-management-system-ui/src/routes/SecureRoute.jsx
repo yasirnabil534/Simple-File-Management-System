@@ -11,7 +11,7 @@ const SecureRoute = ({ children }) => {
   //       const currentUser = await getAccess();
   //       if (!currentUser) {
   //         navigate("/signin");
-  //       } else {
+  //       } else { 
   //         setUser(() => ({ ...currentUser }));
   //       }
   //     };
