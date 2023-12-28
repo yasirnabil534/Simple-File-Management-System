@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import CreateUser from "../pages/CreateUser";
-
+import SignIn from "../pages/SignIn";
 // const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>
 
 const AppRoutes = () => {
@@ -27,10 +27,10 @@ const AppRoutes = () => {
     //     },
     //   ],
     // },
-    // {
-    //   path: "/signin",
-    //   element: <SignIn />,
-    // },
+    {
+      path: "/signin",
+      element: <SignIn />,
+    },
     {
       path: "/create-user",
       element: <CreateUser />,

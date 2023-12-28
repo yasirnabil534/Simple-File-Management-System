@@ -12,9 +12,6 @@ export default {
       borderRadius: {
         'onboarding': '100%',
       },
-      margin: {
-        'title': '20%',
-      },
       colors: {
         'forgetPassword': '#4C22C5'
       }
