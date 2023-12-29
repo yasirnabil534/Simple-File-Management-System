@@ -11,7 +11,7 @@ const SignIn = () => {
   const [check, setCheck] = useState(false);
   return (
     <>
-      <div className="h-screen flex items-end justify-center relative">
+      <div className="h-screen flex items-end justify-center relative font-poppins">
         <div
           className="bg-cover bg-center h-4/5 w-full lg:w-8/12 rounded-onboarding"
           style={{ backgroundImage: `url(${backgroundImage})` }}
