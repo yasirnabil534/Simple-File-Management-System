@@ -19,7 +19,7 @@ const Navbar = () => {
     }
   ];
   return (
-    <div className='h-screen w-56 bg-navbar flex flex-col justify-between text-white'>
+    <div className='h-screen w-80 bg-navbar flex flex-col justify-between text-white'>
       <div className='space-y-2 ml-10 mt-11'>
         {menus.map((menu, idx) => {
           return (

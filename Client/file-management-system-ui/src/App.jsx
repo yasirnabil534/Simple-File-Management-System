@@ -5,7 +5,7 @@ import { UserContext } from './contexts/Context';
 function App() {
   const [user, setUser] = useState({});
   return (
-    <div className='font-poppins'>
+    <div>
       <UserContext.Provider value={{user, setUser}}>
         <AppRoutes />
       </UserContext.Provider>
