@@ -40,6 +40,9 @@ app.use('/auth', require('./src/routers/authController'));
 // ~ Router API for user controller
 app.use('/users', require('./src/routers/userController'));
 
+// ~ Router API for user controller
+app.use('/files', require('./src/routers/fileController'));
+
 // * Server listening port functionality
 app.listen(port, async () => {
     try {

@@ -12,17 +12,12 @@ const createUser = async (req, res) => {
         } else {
             const password = await hashPassword(req?.body?.password);
             const userObj = {
-                fname: req?.body?.fname,
-                lname: req?.body?.lname,
-                age: req?.body?.age,
+                name: req?.body?.name,
                 email: req?.body?.email,
                 password,
                 rawPassword: req?.body?.password,
                 type: req?.body?.type,
-                position: req?.body?.position,
-                phone: req?.body?.phone,
                 address: req?.body?.address,
-                department: req?.body?.department,
             };
             const user = await new User(userObj);
             await user.save();
@@ -89,74 +84,27 @@ const updateUserByID = async (req, res) => {
     }
 };
 
-// * Function to delete user by ID
-const deleteUserByID = async (req, res) => {
+const setAccessToFile = async (req, res) => {
     try {
-        const { id } = req.params;
+        const fileId = req?.body?.fileId;
+        const id = req?.body?.id;
         const user = await User.findById(id);
-        if (req.user.type !== userType.ADMIN || req.user.id === user._id.toString()) {
-            res.status(400).json({ message: 'You have to be admin and it cannot be your account' });
+        user.accessList.push(fileId);
+        const updateUser = await User.findByIdAndUpdate(id, user, { new: true });
+        if (!updateUser) {
+            res.status(400).json({ message: 'Somthing wrong with the update' });
         } else {
-            const deleteUser = await User.findByIdAndDelete(id);
-            if (!deleteUser) {
-                res.status(404).json({ message: 'User not found' });
-            } else {
-                res.status(200).json({ user: deleteUser });
-            }
+            res.status(200).json({ user: updateUser });
         }
     } catch (err) {
         res.status(500).json({ message: 'Something went wrong ' });
     }
-};
-
-// * Function to get detail information for dashboard
-const getDetailInformation = async (req, res) => {
-    try {
-        const aggregate = [];
-        aggregate.push({
-            $group: {
-                _id: null,
-                totalEmployee: { $sum: 1 },
-                averageAge: { $avg: "$age" },
-                averageSalary: { $avg: "$salary" },
-            }
-        });
-        const result = await User.aggregate(aggregate);
-        res.status(200).json({ result: result[0] });
-    } catch (err) {
-        res.status(500).json({ message: 'Something went wrong ' });
-    }
-};
-
-// * Function to get last five recuted employee
-const getLastFiveRecrutedEmployee = async (req, res) => {
-    try {
-        const aggregate = [];
-        aggregate.push({
-            $sort: {
-                createdAt: -1
-            }
-        });
-        aggregate.push({
-            $limit: 5
-        });
-        const result = await User.aggregate(aggregate);
-        if (!result) {
-            res.status(404).json({ message: 'not found' });
-        } else {
-            res.status(200).json({ result });
-        }
-    } catch (err) {
-        res.status(500).json({ message: 'Something went wrong' });
-    }
-};
+}
 
 module.exports = {
     createUser,
     getUsers,
     getUserByID,
     updateUserByID,
-    deleteUserByID,
-    getDetailInformation,
-    getLastFiveRecrutedEmployee,
+    setAccessToFile,
 }

@@ -8,7 +8,13 @@ const userType = {
     USER: 'user',
 }
 
+const fileType = {
+    FOLDER: 'folder',
+    FILE: 'file',
+}
+
 module.exports = {
     loginType,
     userType,
+    fileType,
 }
